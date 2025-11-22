@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website for a Cyber Security Analyst built with Next.js 15, TypeScript, and Tailwind CSS.
 
-## 🚀 Features
+## Features
 
 - **Modern Tech Stack**: Built with Next.js 15 (App Router), React 19, TypeScript, and Tailwind CSS 4
 - **Responsive Design**: Fully responsive across all devices (mobile, tablet, desktop)
@@ -28,7 +28,7 @@ A modern, responsive portfolio website for a Cyber Security Analyst built with N
 - **TypeScript Strict Mode**: Full type safety with strict compiler options
 - **Accessibility**: WCAG 2.1 compliant with proper ARIA labels and keyboard navigation
 
-## 📋 Sections
+## Sections
 
 1. **Hero** - Introduction with professional image
 2. **Skills** - Bento grid layout showcasing technical and soft skills
@@ -38,7 +38,7 @@ A modern, responsive portfolio website for a Cyber Security Analyst built with N
 6. **Blog** - Latest Medium articles with caching
 7. **Contact** - Social links and contact information
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
 - **Language**: [TypeScript](https://www.typescriptlang.org/)
@@ -47,7 +47,7 @@ A modern, responsive portfolio website for a Cyber Security Analyst built with N
 - **Icons**: [Lucide React](https://lucide.dev/) & [React Icons](https://react-icons.github.io/react-icons/)
 - **Testing**: [Vitest](https://vitest.dev/) & [React Testing Library](https://testing-library.com/react)
 
-## 📦 Installation
+## Installation
 
 1. **Clone the repository**
    ```bash
@@ -76,7 +76,7 @@ A modern, responsive portfolio website for a Cyber Security Analyst built with N
 
    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 🏗️ Build
+## Build
 
 To create a production build:
 
@@ -90,7 +90,7 @@ To start the production server:
 npm start
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 portfolio/
@@ -116,18 +116,10 @@ portfolio/
 └── next.config.ts      # Next.js configuration
 ```
 
-## 🚀 Deployment
-
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Import your repository on [Vercel](https://vercel.com)
-3. Configure environment variables in Vercel dashboard
-4. Deploy!
 
 **Important**: Update `NEXT_PUBLIC_SITE_URL` to your production domain before deployment.
 
-## 🎨 Customization
+## Customization
 
 ### Update Personal Information
 
@@ -141,24 +133,9 @@ portfolio/
 - **Hero Image**: Replace `public/hero.jpg` (recommended: 1200x1600px)
 - **Project Images**: Add images to `public/` folder
 
-## 📄 License
+## License
 
 This project is open source and available under the [MIT License](LICENSE).
 
-## 👤 Author
-
-**Farhan Ansari**
-- GitHub: [@fxrhan](https://github.com/fxrhan)
-- LinkedIn: [ansari-farhan](https://linkedin.com/in/ansari-farhan)
-- Twitter: [@fxrhanansari](https://x.com/fxrhanansari)
-- Medium: [@fxrhanansari](https://fxrhanansari.medium.com)
-
-## 🙏 Acknowledgments
-
-- Built with [Next.js](https://nextjs.org/)
-- Styled with [Tailwind CSS](https://tailwindcss.com/)
-- Animated with [Framer Motion](https://www.framer.com/motion/)
-
----
 
 ⭐ If you found this project helpful, please consider giving it a star!
