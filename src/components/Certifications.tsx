@@ -8,19 +8,19 @@ const certifications = [
         name: "(ISC)² Certified in Cybersecurity",
         issuer: "(ISC)²",
         year: "2023",
-        logo: "https://logo.clearbit.com/isc2.org"
+        logo: "/isc2_logo.png"
     },
     {
         name: "EC Council CICT",
         issuer: "EC Council",
         year: "2023",
-        logo: "https://logo.clearbit.com/eccouncil.org"
+        logo: "/eccouncil_logo.png"
     },
     {
         name: "Stanford Web Security Professional",
         issuer: "Stanford University",
         year: "2022",
-        logo: "https://logo.clearbit.com/stanford.edu"
+        logo: "/stanford_logo.png"
     },
     {
         name: "Azure AZ-900",
@@ -33,7 +33,7 @@ const certifications = [
         name: "Google Digital Marketing",
         issuer: "Google",
         year: "2021",
-        logo: "https://logo.clearbit.com/google.com"
+        logo: "/google_logo.png"
     }
 ];
 

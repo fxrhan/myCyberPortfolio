@@ -9,7 +9,7 @@ const experiences = [
         role: "Associate",
         period: "January 2024 – Present",
         location: "Ahmedabad, Gujarat",
-        logo: "https://logo.clearbit.com/rapidops.com"
+        logo: "/rapidops_logo.png"
     },
     {
         company: "EF EDUCATION FIRST",
