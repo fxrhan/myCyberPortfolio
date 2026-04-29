@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { FaReact, FaPython, FaAws, FaDocker, FaMicrosoft } from "react-icons/fa";
 import { SiNextdotjs, SiTailwindcss, SiSplunk, SiJavascript, SiC, SiGnubash, SiKalilinux, SiWireshark, SiBurpsuite, SiMetasploit } from "react-icons/si";
-import { Shield, Users, MessageSquare, Brain, Zap } from "lucide-react";
+import { Shield, Users, MessageSquare, Brain, Zap, Bot, Workflow } from "lucide-react";
 
 const skills = [
     {
@@ -18,7 +18,7 @@ const skills = [
             { name: "Metasploit", icon: <SiMetasploit /> },
             { name: "Nmap", icon: <SiKalilinux /> }
         ],
-        className: "md:col-span-2 md:row-span-1 bg-indigo-900/20 border-indigo-500/20",
+        className: "md:col-span-2 bg-indigo-900/20 border-indigo-500/20",
     },
     {
         category: "Cloud Security & DevOps",
@@ -29,7 +29,23 @@ const skills = [
             { name: "Docker", icon: <FaDocker /> },
             { name: "Cloud Security", icon: <Shield /> }
         ],
-        className: "md:col-span-2 md:row-span-1 bg-neutral-900/50 border-neutral-800",
+        className: "md:col-span-1 bg-neutral-900/50 border-neutral-800",
+    },
+    {
+        category: "AI & Automations",
+        icon: <Bot className="w-6 h-6" />,
+        items: [
+            { name: "MCP", icon: <Bot /> },
+            { name: "AI Automations", icon: <Brain /> },
+            { name: "Workflow Automations", icon: <Workflow /> },
+            { name: "CRM Automations", icon: <Zap /> },
+            { name: "Zapier", icon: <Zap /> },
+            { name: "Make.com", icon: <Workflow /> },
+            { name: "n8n", icon: <Bot /> },
+            { name: "Workatoo", icon: <Zap /> },
+            { name: "Recruit CRM", icon: <Users /> }
+        ],
+        className: "md:col-span-3 bg-violet-900/20 border-violet-500/20",
     },
     {
         category: "Languages & Scripting",
@@ -61,7 +77,7 @@ const skills = [
             { name: "Leadership", icon: <Users /> },
             { name: "Adaptability", icon: <Zap /> }
         ],
-        className: "md:col-span-2 bg-emerald-900/20 border-emerald-500/20",
+        className: "md:col-span-1 bg-emerald-900/20 border-emerald-500/20",
     },
 ];
 
@@ -77,11 +93,11 @@ export default function Skills() {
                 >
                     <h2 className="text-3xl md:text-5xl font-bold mb-6">Skills that fuel my passion</h2>
                     <p className="text-muted-foreground max-w-md">
-                        My technical arsenal, ranging from offensive and defensive security tools to modern web development frameworks.
+                        My technical arsenal — from offensive and defensive security tools to AI automations, CRM workflows, and modern web development frameworks.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 auto-rows-[minmax(180px,auto)]">
                     {skills.map((skill, index) => (
                         <motion.div
                             key={index}

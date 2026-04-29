@@ -5,9 +5,16 @@ import { Briefcase } from "lucide-react";
 
 const experiences = [
     {
+        company: "RECRUIT CRM",
+        role: "Senior Associate – Automations",
+        period: "April 2026 – Present",
+        location: "Remote, Ahmedabad",
+        logo: "/recruit_crm_logo.png"
+    },
+    {
         company: "RAPIDOPS INC.",
-        role: "Associate",
-        period: "January 2024 – Present",
+        role: "CS Associate",
+        period: "January 2024 – March 2026",
         location: "Ahmedabad, Gujarat",
         logo: "/rapidops_logo.png"
     },
@@ -76,7 +83,7 @@ export default function Experience() {
                                     transition={{ delay: index * 0.2 + 0.3, type: "spring", stiffness: 200 }}
                                     className="absolute -left-[7px] md:left-[9px] top-6 md:top-8 w-4 h-4 rounded-full bg-primary shadow-lg shadow-primary/50 group-hover:scale-125 transition-transform"
                                 >
-                                    <div className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
+                                    <div className="absolute inset-0 rounded-full bg-primary opacity-0 group-hover:animate-ping group-hover:opacity-75" />
                                 </motion.div>
 
                                 {/* Content Card */}

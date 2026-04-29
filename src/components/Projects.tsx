@@ -5,6 +5,7 @@ import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { ArrowUpRight, Github, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { SWIPE_CONFIDENCE_THRESHOLD, swipePower } from "@/lib/utils";
 
 const projects = [
     {
@@ -41,10 +42,6 @@ const projects = [
     },
 ];
 
-const swipeConfidenceThreshold = 10000;
-const swipePower = (offset: number, velocity: number) => {
-    return Math.abs(offset) * velocity;
-};
 
 export default function Projects() {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -61,9 +58,9 @@ export default function Projects() {
     const handleDragEnd = (_e: MouseEvent | TouchEvent | PointerEvent, { offset, velocity }: PanInfo) => {
         const swipe = swipePower(offset.x, velocity.x);
 
-        if (swipe < -swipeConfidenceThreshold) {
+        if (swipe < -SWIPE_CONFIDENCE_THRESHOLD) {
             paginate(1);
-        } else if (swipe > swipeConfidenceThreshold) {
+        } else if (swipe > SWIPE_CONFIDENCE_THRESHOLD) {
             paginate(-1);
         }
     };
@@ -100,7 +97,7 @@ export default function Projects() {
                             Here are some of the projects I've worked on. Each one was a unique challenge that helped me grow.
                         </p>
                     </div>
-                    <Link href="https://github.com/fxrhan?tab=repositories" target="_blank" className="hidden md:flex items-center gap-2 text-muted-foreground hover:text-white transition-colors">
+                    <Link href="https://github.com/fxrhan?tab=repositories" target="_blank" rel="noopener noreferrer" className="hidden md:flex items-center gap-2 text-muted-foreground hover:text-white transition-colors">
                         View all repositories <ArrowUpRight className="w-4 h-4" />
                     </Link>
                 </motion.div>
@@ -177,6 +174,7 @@ export default function Projects() {
                     <Link
                         href="https://github.com/fxrhan"
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="px-8 py-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all text-white font-medium flex items-center gap-2 min-h-[44px] touch-manipulation"
                     >
                         And many more <ArrowUpRight className="w-4 h-4" />
@@ -201,7 +199,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
             transition={{ delay: index * 0.1 }}
             className="group cursor-pointer"
         >
-            <Link href={project.link} target="_blank">
+            <Link href={project.link} target="_blank" rel="noopener noreferrer">
                 <div className={`relative h-[250px] md:h-[300px] w-full rounded-3xl overflow-hidden mb-6 border border-white/5 group-hover:border-primary/50 transition-colors`}>
                     {/* Image */}
                     <div className="absolute inset-0">

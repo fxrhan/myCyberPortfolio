@@ -4,23 +4,32 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { ArrowUpRight, BookOpen, AlertCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import SkeletonCard from "./SkeletonCard";
+import { SWIPE_CONFIDENCE_THRESHOLD, swipePower } from "@/lib/utils";
+
+const ALLOWED_THUMBNAIL_HOSTS = ["cdn-images-1.medium.com", "miro.medium.com"];
+
+function isSafeThumbnail(url: string): boolean {
+    try {
+        const { protocol, hostname } = new URL(url);
+        return protocol === "https:" && ALLOWED_THUMBNAIL_HOSTS.includes(hostname);
+    } catch {
+        return false;
+    }
+}
 
 interface BlogPost {
     title: string;
     pubDate: string;
     link: string;
-    thumbnail: string;
+    thumbnail?: string;
     categories: string[];
 }
 
 const CACHE_KEY = "medium_blog_posts";
 const CACHE_DURATION = 1000 * 60 * 30; // 30 minutes
 
-const swipeConfidenceThreshold = 10000;
-const swipePower = (offset: number, velocity: number) => {
-    return Math.abs(offset) * velocity;
-};
 
 export default function Blog() {
     const [posts, setPosts] = useState<BlogPost[]>([]);
@@ -40,9 +49,9 @@ export default function Blog() {
     const handleDragEnd = (_e: MouseEvent | TouchEvent | PointerEvent, { offset, velocity }: PanInfo) => {
         const swipe = swipePower(offset.x, velocity.x);
 
-        if (swipe < -swipeConfidenceThreshold) {
+        if (swipe < -SWIPE_CONFIDENCE_THRESHOLD) {
             paginate(1);
-        } else if (swipe > swipeConfidenceThreshold) {
+        } else if (swipe > SWIPE_CONFIDENCE_THRESHOLD) {
             paginate(-1);
         }
     };
@@ -106,20 +115,22 @@ export default function Blog() {
 
                 if (data.items) {
                     const postsWithThumbnails = data.items.map((item: any) => {
-                        // Extract image from content or description if thumbnail is missing
-                        let thumbnail = item.thumbnail;
+                        // Validate primary thumbnail against allowed hosts
+                        let thumbnail: string | undefined =
+                            item.thumbnail && isSafeThumbnail(item.thumbnail) ? item.thumbnail : undefined;
+
                         if (!thumbnail) {
                             // Try content first as it usually has the full HTML
                             if (item.content) {
                                 const imgMatch = item.content.match(/<img[^>]+src="([^">]+)"/);
-                                if (imgMatch) {
+                                if (imgMatch && isSafeThumbnail(imgMatch[1])) {
                                     thumbnail = imgMatch[1];
                                 }
                             }
                             // Fallback to description
                             if (!thumbnail && item.description) {
                                 const imgMatch = item.description.match(/<img[^>]+src="([^">]+)"/);
-                                if (imgMatch) {
+                                if (imgMatch && isSafeThumbnail(imgMatch[1])) {
                                     thumbnail = imgMatch[1];
                                 }
                             }
@@ -181,6 +192,7 @@ export default function Blog() {
                     <Link
                         href={process.env.NEXT_PUBLIC_MEDIUM_URL || "https://fxrhanansari.medium.com/"}
                         target="_blank"
+                        rel="noopener noreferrer"
                         className="hidden md:flex items-center gap-2 text-muted-foreground hover:text-white transition-colors"
                     >
                         Read more blogs on Medium <ArrowUpRight className="w-4 h-4" />
@@ -212,6 +224,7 @@ export default function Blog() {
                             <Link
                                 href={process.env.NEXT_PUBLIC_MEDIUM_URL || "https://fxrhanansari.medium.com/"}
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 className="text-primary hover:underline"
                             >
                                 Medium profile
@@ -296,6 +309,7 @@ export default function Blog() {
                             <Link
                                 href={process.env.NEXT_PUBLIC_MEDIUM_URL || "https://fxrhanansari.medium.com/"}
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 className="flex items-center gap-2 text-muted-foreground hover:text-white transition-colors min-h-[44px] touch-manipulation"
                             >
                                 Read more on Medium <ArrowUpRight className="w-4 h-4" />
@@ -322,13 +336,15 @@ function BlogCard({ post, index }: BlogCardProps) {
             transition={{ delay: index * 0.1 }}
             className="group flex flex-col h-full"
         >
-            <Link href={post.link} target="_blank" className="flex-1 flex flex-col">
+            <Link href={post.link} target="_blank" rel="noopener noreferrer" className="flex-1 flex flex-col">
                 <div className="relative h-48 w-full rounded-2xl overflow-hidden mb-4 border border-white/10 group-hover:border-primary/50 transition-colors">
                     {post.thumbnail ? (
-                        <img
+                        <Image
                             src={post.thumbnail}
                             alt={post.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 25vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                     ) : (
                         <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center">
@@ -339,7 +355,7 @@ function BlogCard({ post, index }: BlogCardProps) {
 
                 <div className="flex-1 flex flex-col">
                     <div className="flex gap-2 mb-3 flex-wrap">
-                        {post.categories.slice(0, 2).map((cat, i) => (
+                        {(post.categories.length > 0 ? post.categories.slice(0, 2) : ["Article"]).map((cat, i) => (
                             <span key={i} className="text-xs px-2 py-1 rounded-full bg-white/5 text-muted-foreground border border-white/5">
                                 {cat}
                             </span>
@@ -349,7 +365,7 @@ function BlogCard({ post, index }: BlogCardProps) {
                         {post.title}
                     </h3>
                     <p className="text-xs text-muted-foreground mt-auto">
-                        {new Date(post.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                        {new Date(post.pubDate.replace(' ', 'T')).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                     </p>
                 </div>
             </Link>

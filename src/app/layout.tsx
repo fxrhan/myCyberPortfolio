@@ -8,13 +8,13 @@ export const metadata: Metadata = {
     default: "Farhan in Cyber",
     template: "%s | Farhan in Cyber"
   },
-  description: "Portfolio of Farhan Ansari - Cyber Security Analyst. Specializing in Penetration Testing, Cloud Security, and Security Operations.",
-  keywords: ["Cyber Security", "Penetration Testing", "Cloud Security", "Security Operations", "Farhan Ansari", "InfoSec", "Ethical Hacking"],
+  description: "Portfolio of Farhan Ansari - Senior Associate in Automations & Cybersecurity. Specialising in AI Automations, CRM Workflows, Penetration Testing, and Cloud Security.",
+  keywords: ["AI Automations", "CRM Automations", "Zapier", "n8n", "Make.com", "Cyber Security", "Penetration Testing", "Farhan Ansari", "Recruit CRM"],
   authors: [{ name: "Farhan Ansari" }],
   creator: "Farhan Ansari",
   openGraph: {
     title: "Farhan in Cyber",
-    description: "Portfolio of Farhan Ansari - Cyber Security Analyst. Specializing in Penetration Testing, Cloud Security, and Security Operations.",
+    description: "Portfolio of Farhan Ansari - Senior Associate in Automations & Cybersecurity. Specialising in AI Automations, CRM Workflows, Penetration Testing, and Cloud Security.",
     url: "/",
     siteName: "Farhan in Cyber",
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Farhan in Cyber",
-    description: "Portfolio of Farhan Ansari - Cyber Security Analyst",
+    description: "Portfolio of Farhan Ansari - Senior Associate in Automations & Cybersecurity",
     images: ["/og-image.png"],
     creator: "@fxrhanansari",
   },
@@ -68,7 +68,7 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Farhan Ansari",
-    jobTitle: "Cyber Security Analyst",
+    jobTitle: "Senior Associate – Automations",
     url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
     sameAs: [
       "https://github.com/fxrhan",
@@ -76,9 +76,9 @@ export default function RootLayout({
       "https://fxrhanansari.medium.com",
       "https://linkedin.com/in/ansari-farhan",
     ],
-    description: "Cyber Security Analyst specializing in Penetration Testing, Cloud Security, and Security Operations.",
+    description: "Senior Associate in Automations specialising in AI Automations, CRM Workflows, Workflow Automation, and Cybersecurity.",
     image: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/og-image.png`,
-    knowsAbout: ["Penetration Testing", "Cloud Security", "Security Operations", "Splunk", "Azure", "AWS"],
+    knowsAbout: ["AI Automations", "CRM Automations", "Zapier", "n8n", "Make.com", "Penetration Testing", "Cloud Security", "Splunk", "Azure", "AWS"],
   };
 
   return (
@@ -94,7 +94,7 @@ export default function RootLayout({
                   c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                   t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                   y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-                })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");
+                })(window, document, "clarity", "script", ${JSON.stringify(process.env.NEXT_PUBLIC_CLARITY_ID)});
               `,
             }}
           />
